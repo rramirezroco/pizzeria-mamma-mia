@@ -40,9 +40,9 @@
 .read-the-docs {
   color: #888;
 }
- 
+  */
 
-/* Estilo Header */
+
 .header {
   background: url("../public/img/Header.jpg");
   height: 200px;
@@ -127,8 +127,34 @@ footer {
   color: white;
   padding: 15px;
   text-align: center;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .button-total {
   text-align: right;
+}
+
+.div-formulario-register {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.formulario-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 50%;
+}
+
+.button-form {
+  background-color: rgb(25, 25, 240);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 120px;
 }
