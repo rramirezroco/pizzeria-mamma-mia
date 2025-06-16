@@ -13,7 +13,7 @@ const Cart = () => {
         )
     }
 
-    const eliminarTarea = () => {
+    const verificaStock = () => {
         const eliminar = listadoCart.map((item, index) =>
             item.count != 0 ? item : listadoCart.splice(index, 1)
         )
@@ -35,7 +35,7 @@ const Cart = () => {
         return total;
     }
 
-    eliminarTarea()
+    verificaStock()
 
     return (
         <div>
