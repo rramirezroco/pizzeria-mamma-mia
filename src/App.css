@@ -42,6 +42,9 @@
 }
   */
 
+.container {
+  padding-bottom: 50px;
+}
 
 .header {
   background: url("../public/img/Header.jpg");
@@ -157,4 +160,36 @@ footer {
   border: none;
   border-radius: 5px;
   width: 120px;
+}
+
+.listado-ingredientes {
+  list-style-type: circle;
+  color: #8c8b8b;
+  font-size: 14px;
+}
+
+/* Cart */
+.cartResumen {
+  padding: 30px;
+}
+
+.detalleCarritoCompra {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.detalleCarritoCompra img {
+  height: 30px;
+  margin-right: 5px;
+}
+
+.detalleCarritoCompra label {
+  text-transform: capitalize;
+}
+
+.precioCantidad {
+  display: flex;
+  gap: 10px;
+  align-items: center
 }
