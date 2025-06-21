@@ -193,3 +193,47 @@ footer {
   gap: 10px;
   align-items: center
 }
+
+
+.cardDetallePizza {
+  display: grid;
+  grid-template-areas:
+    "imagen ingredientes"
+    "descripcion descripcion";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+
+}
+
+.imagenPizza {
+  grid-area: imagen;
+
+}
+
+.ingredientesPizza {
+  grid-area: ingredientes;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+
+  div {
+    width: 100%;
+  }
+
+  .listado-ingredientes {
+    list-style-position: inside;
+  }
+}
+
+.descripcionPizza {
+  grid-area: descripcion;
+  padding: 20px 0px;
+}
+
+.precioPizza {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
