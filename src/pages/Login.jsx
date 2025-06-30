@@ -29,7 +29,7 @@ const Login = () => {
                 <input type='email' value={email} placeholder='Ingrese Email' onChange={(e) => setEmail(e.target.value)} />
                 <label>Password</label>
                 <input type='password' value={password} placeholder='Ingrese Password' onInput={(e) => setPassword(e.target.value)} />
-                <button className='button-form mt-3' type='submit'>Login</button>
+                <button className='button-main mt-3' type='submit'>Login</button>
             </form>
         </div>
     )

@@ -39,7 +39,7 @@ const Cart = () => {
 
     return (
         <div>
-            <main className="container cartResumen">
+            <main className="cartResumen">
                 <h5>Detalles del pedido:</h5>
                 <section className="row resumenCarritoCompra">
                     {listadoCart.map((pizza, index) =>

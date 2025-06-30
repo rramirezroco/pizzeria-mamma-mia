@@ -1,30 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const total = 25000;
     const token = false;
 
     return (
-        <div className='navbar'>
+        <nav className='navbar'>
             <div className='div-menu'>
                 <label>Pizzería Mamma Mía</label>
-                <button className='button-main'>🍕Home</button>
+                <Link to="/" className='button-main'>🍕Home</Link>
                 {token ?
-                    <button className='button-main'>🔓Profile</button>
+                    <Link to="/profile" className='button-main'>🔓Profile</Link>
                     :
-                    <button className='button-main'>🔐Login</button>
+                    <Link to="/login" className='button-main'>🔐Login</Link>
                 }
                 {token ?
-                    <button className='button-main'>🔒Logout</button>
+                    <Link to="/" className='button-main'>🔒Logout</Link>
                     :
-                    <button className='button-main'>🔐Register</button>
+                    <Link to="/register" className='button-main'>🔐Register</Link>
                 }
 
             </div>
             <div className='button-main-right'>
-                <button className='button-main'>🛒Total: $ {total.toLocaleString()}</button>
+                <Link to="/cart" className='button-main'>🛒Total: $ {total.toLocaleString()}</Link>
             </div>
-        </div>
+        </nav>
     )
 }
 
