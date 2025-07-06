@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header';
 import CardPizza from '../components/CardPizza';
-
-//import { pizzas } from '../data/pizzas'
+import { pizzasJson } from '../data/pizzas'
 
 const Home = () => {
     // 1. declarar constantes
@@ -15,10 +14,14 @@ const Home = () => {
 
     // 2 - Función que consulta la API
     const consultarApi = async () => {
-        const url = "http://localhost:5000/api/pizzas";
-        const response = await fetch(url);
-        const data = await response.json();
-        setPizzas(data);
+        try {
+            const url = "http://localhost:5000/api/pizzas";
+            const response = await fetch(url);
+            const data = await response.json();
+            setPizzas(data);
+        } catch (error) {
+            setPizzas(pizzasJson)
+        }
     };
 
     return (
@@ -29,10 +32,7 @@ const Home = () => {
                     {pizzas.map((pizza) =>
                         <CardPizza
                             key={pizza.id}
-                            name={pizza.name}
-                            price={pizza.price}
-                            ingredients={pizza.ingredients}
-                            img={pizza.img} />)}
+                            parameters={pizza} />)}
                 </section>
             </main>
 

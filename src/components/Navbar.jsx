@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { PizzaContext } from '../context/PizzaContext';
 
 const Navbar = () => {
-    const total = 25000;
+    const { total } = useContext(PizzaContext);
     const token = false;
 
     return (
@@ -23,7 +24,7 @@ const Navbar = () => {
 
             </div>
             <div className='button-main-right'>
-                <Link to="/cart" className='button-main'>🛒Total: $ {total.toLocaleString()}</Link>
+                <Link to="/cart" className='button-main'>🛒Total: $ {total().toLocaleString()}</Link>
             </div>
         </nav>
     )

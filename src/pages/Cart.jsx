@@ -1,41 +1,10 @@
-import React from 'react'
-import { pizzaCart } from '../data/pizzas'
+import React, { useContext } from 'react'
+//import { pizzaCart } from '../data/pizzas'
 import { useState } from 'react'
+import { PizzaContext } from '../context/PizzaContext'
 
 const Cart = () => {
-    const [listadoCart, setListadoCart] = useState(pizzaCart)
-
-    const aumentaCantidad = (e) => {
-        setListadoCart(
-            listadoCart.map((item) =>
-                item.id === e ? { ...item, count: item.count + 1 } : item
-            )
-        )
-    }
-
-    const verificaStock = () => {
-        const eliminar = listadoCart.map((item, index) =>
-            item.count != 0 ? item : listadoCart.splice(index, 1)
-        )
-    }
-
-    const disminuyeCantidad = (e) => {
-        const newCount = listadoCart.map((item, index) =>
-            item.id === e ? { ...item, count: item.count - 1 } : item
-        )
-        setListadoCart(newCount)
-    }
-
-    const total = () => {
-        let total = 0;
-        listadoCart.map((item) => {
-            total += item.count * item.price
-        })
-
-        return total;
-    }
-
-    verificaStock()
+    const { listadoCart, total, aumentaCantidad, disminuyeCantidad } = useContext(PizzaContext)
 
     return (
         <div>
@@ -50,9 +19,9 @@ const Cart = () => {
                             </div>
                             <div className='precioCantidad'>
                                 <label className='fw-semibold'>$ {(pizza.price).toLocaleString()}</label>
-                                <button type='button' className='btn btn-outline-danger' onClick={() => disminuyeCantidad(pizza.id)}> - </button>
+                                <button type='button' className='btn btn-outline-danger' onClick={() => disminuyeCantidad(pizza)}> - </button>
                                 <label className='fw-semibold'> {pizza.count} </label>
-                                <button type='button' className='btn btn-outline-primary' onClick={() => aumentaCantidad(pizza.id)}> + </button>
+                                <button type='button' className='btn btn-outline-primary' onClick={() => aumentaCantidad(pizza)}> + </button>
                                 <label className='fw-semibold'>$ {(pizza.price * pizza.count).toLocaleString()}</label>
                             </div>
                         </article>
