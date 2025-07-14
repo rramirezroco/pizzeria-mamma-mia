@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
+import { UserContext } from '../context/UserContext'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const { login } = useContext(UserContext);
 
     function verificaDatos(e) {
         e.preventDefault();
@@ -17,8 +18,7 @@ const Login = () => {
             alert("La contraseña debe tener un mínimo de 6 caracteres")
             return
         }
-
-        alert("Autentication successfull!")
+        login()
     }
 
     return (

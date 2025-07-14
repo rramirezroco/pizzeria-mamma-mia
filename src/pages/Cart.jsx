@@ -2,9 +2,11 @@ import React, { useContext } from 'react'
 //import { pizzaCart } from '../data/pizzas'
 import { useState } from 'react'
 import { PizzaContext } from '../context/PizzaContext'
+import { UserContext } from '../context/UserContext'
 
 const Cart = () => {
     const { listadoCart, total, aumentaCantidad, disminuyeCantidad } = useContext(PizzaContext)
+    const { token } = useContext(UserContext);
 
     return (
         <div>
@@ -28,7 +30,8 @@ const Cart = () => {
                     )}
                 </section>
                 <h3>Total: $ <label className="totalCart">{total().toLocaleString()}</label></h3>
-                <button type='button' className='btn btn-dark'>Pagar</button>
+                {token && <button type='button' className='btn btn-dark'>Pagar</button>}
+
             </main>
         </div>
     )

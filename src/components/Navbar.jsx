@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { PizzaContext } from '../context/PizzaContext';
+import { UserContext } from '../context/UserContext';
 
 const Navbar = () => {
     const { total } = useContext(PizzaContext);
-    const token = false;
+    const { token, logout } = useContext(UserContext);
+
 
     return (
         <nav className='navbar'>
@@ -17,7 +19,7 @@ const Navbar = () => {
                     <Link to="/login" className='button-main'>🔐Login</Link>
                 }
                 {token ?
-                    <Link to="/" className='button-main'>🔒Logout</Link>
+                    <Link to="/" className='button-main' onClick={() => logout()}>🔒Logout</Link>
                     :
                     <Link to="/register" className='button-main'>🔐Register</Link>
                 }

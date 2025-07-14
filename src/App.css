@@ -292,3 +292,7 @@ footer {
   height: 100vh;
 
 }
+
+.btn-volver {
+  background: gray
+}

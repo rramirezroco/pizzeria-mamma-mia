@@ -1,9 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { PizzaContext } from '../context/PizzaContext';
+import { useNavigate } from 'react-router-dom';
 
 const CardPizza = (props) => {
     const ingredientes = props.parameters.ingredients;
     const { aumentaCantidad } = useContext(PizzaContext)
+    const navigate = useNavigate() //La constante a usar para el Hooks useNavigate
+    const verPizza = (id) => {
+        console.log(id)
+        if (id) {
+            navigate(`/pizza/${id}`)
+        } else {
+            alert("Debe seleccionar una Pizza")
+        }
+    }
 
     return (
 
@@ -25,7 +35,7 @@ const CardPizza = (props) => {
                     <p className="card-text text-center h5 ">Precio: ${props.parameters.price.toLocaleString()}</p>
 
                     <div className='buttons-cards mt-4'>
-                        <button className='p-1'>Ver Más 👀</button>
+                        <button className='p-1' onClick={() => verPizza(props.parameters.id)}>Ver Más 👀</button>
                         <button className='bg-dark text-white p-1' onClick={() => aumentaCantidad(props.parameters)}>Añadir 🛒</button>
                     </div>
                 </div>

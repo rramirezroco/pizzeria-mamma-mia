@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 
 const Pizza = () => {
     // 1. declarar constantes
@@ -7,6 +8,8 @@ const Pizza = () => {
     const [precio, setPrecio] = useState(0);
     const [descipcion, setDescripcion] = useState("");
 
+    const { id } = useParams()
+
     // 3 - Llamamos a la función consultarApi al momento de montar el componente
     useEffect(() => {
         consultarPizza();
@@ -14,7 +17,7 @@ const Pizza = () => {
 
     // 2 - Función que consulta la API
     const consultarPizza = async () => {
-        const url = "http://localhost:5000/api/pizzas/p001";
+        const url = `http://localhost:5000/api/pizzas/${id}`;
         const response = await fetch(url);
         const data = await response.json();
         setPizza(data);
@@ -52,6 +55,9 @@ const Pizza = () => {
                                     </p>
                                     <div className="precioPizza">
                                         <button className='btn btn-sm bg-dark text-center text-white p-1'>Añadir 🛒</button>
+                                    </div>
+                                    <div className="precioPizza pt-1">
+                                        <Link to='/' className='btn btn-sm bg-dark text-center text-white p-1'>Volver </Link>
                                     </div>
                                 </div>
                             </div>
