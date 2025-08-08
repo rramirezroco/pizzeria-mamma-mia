@@ -1,28 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
+import { UserContext } from '../context/UserContext';
 
 const Register = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
+    const { email, password, register, setEmail, setPassword, msgError, setMsgError } = useContext(UserContext);
 
 
     function verificaDatos(e) {
         e.preventDefault();
-
-        if (email.trim() == "" || password.trim() == "" || passwordConfirm.trim() == "") {
-            alert("Debe completar todos los datos");
-            return
-        }
-        if (password.length < 6) {
-            alert("La contraseña debe tener un mínimo de 6 caracteres")
-            return
-        }
         if (password !== passwordConfirm) {
-            alert("Las contraseñas no coinciden")
+            setMsgError("Las contraseñas no coinciden")
             return
         }
+        register()
     }
+
 
     return (
         <div className='div-formulario-register p-5'>
@@ -35,6 +28,12 @@ const Register = () => {
                 <label>Confirme Contraseña</label>
                 <input type='password' value={passwordConfirm} placeholder='Confirme Password' onInput={(e) => setPasswordConfirm(e.target.value)} />
                 <button className='button-form mt-3' type='submit'>Enviar</button>
+                {msgError != "" && (
+                    <div style={{ color: 'red', marginTop: '10px', textAlign: 'center' }}>
+                        {msgError}
+                    </div>
+
+                )}
             </form>
         </div>
     )

@@ -8,6 +8,28 @@ const Cart = () => {
     const { listadoCart, total, aumentaCantidad, disminuyeCantidad } = useContext(PizzaContext)
     const { token } = useContext(UserContext);
 
+    const pagar = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:5000/api/checkouts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                cart: listadoCart,
+            }),
+        });
+        /*
+        */
+        const data = await response.json();
+
+        alert(data?.error || "Authentication successful!");
+        localStorage.setItem("token", data.token);
+
+
+    };
+
     return (
         <div>
             <main className="cartResumen">
@@ -30,7 +52,7 @@ const Cart = () => {
                     )}
                 </section>
                 <h3>Total: $ <label className="totalCart">{total().toLocaleString()}</label></h3>
-                {token && <button type='button' className='btn btn-dark'>Pagar</button>}
+                {token && <button type='button' className='btn btn-dark' onClick={pagar}>Pagar</button>}
 
             </main>
         </div>

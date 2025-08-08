@@ -3,26 +3,18 @@ import { useState } from 'react'
 import { UserContext } from '../context/UserContext'
 
 const Login = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const { login } = useContext(UserContext);
-
+    const { login, email, password, setEmail, setPassword, user, msgError } = useContext(UserContext);
     function verificaDatos(e) {
         e.preventDefault();
 
-        if (email.trim() == "" || password.trim() == "") {
-            alert("Debe completar todos los datos");
-            return
-        }
-        if (password.length < 6) {
-            alert("La contraseña debe tener un mínimo de 6 caracteres")
-            return
-        }
         login()
     }
 
     return (
+
         <div className='div-formulario-register p-5'>
+
+
             <h2 className='text-center'>Login</h2>
             <form className='formulario-column' onSubmit={verificaDatos}>
                 <label>Email</label>
@@ -30,6 +22,11 @@ const Login = () => {
                 <label>Password</label>
                 <input type='password' value={password} placeholder='Ingrese Password' onInput={(e) => setPassword(e.target.value)} />
                 <button className='button-main mt-3' type='submit'>Login</button>
+                {msgError != "" && (
+                    <div style={{ color: 'red', marginTop: '10px', textAlign: 'center' }}>
+                        {msgError}
+                    </div>
+                )}
             </form>
         </div>
     )
